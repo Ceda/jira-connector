@@ -4,7 +4,7 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
-module JiraTransitionRails5
+module JiraTransition
   class Application < Rails::Application
     config.generators do |generate|
       generate.helper false
