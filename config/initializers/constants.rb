@@ -1,27 +1,13 @@
 require 'base64'
 
 # Credentials
-BB_JIRA_URL    = 'https://cedatest.atlassian.net/rest/api/2/issue/'.freeze
-GIT_HUB_TOKEN  = '7c96a002decb0712a1bff50bf0a2545f2241db72'.freeze
-JIRA_PASSWORD  = 'cedaceda'.freeze
-JIRA_USER_NAME = 'pleskac@gmail.com'.freeze
-JIRA_TOKEN     = Base64.encode64("#{JIRA_USER_NAME}:#{JIRA_PASSWORD}").freeze
+BB_JIRA_API_V1_URL = 'https://cedatest.atlassian.net/rest/dev-status/1.0/issue/'.freeze
+BB_JIRA_API_V2_URL = 'https://cedatest.atlassian.net/rest/api/2/issue/'.freeze
 
-# Jira Transition IDs
-QA_PASSED_ID            = '91'.freeze
-REVIEW_PASSED_ID        = '101'.freeze
-DEPLOY_READY_ID         = '111'.freeze
-CODE_REVIEW_ID          = '11'.freeze
-QA_READY_ID             = '12'.freeze
-PRODUCTION_VERIFIED_ID  = '12'.freeze
-START_PROGRESS_JITR_ID  = '3'.freeze
-START_PROGRESS_ID       = '3'.freeze
-JIRA_FIELD_BRANCH       = '12'.freeze
-JIRA_FIELD_PULL_REQUEST = '12'.freeze
-JACKTHREADS_JIRA_URL    = '12'.freeze
-QA_READY_JITR_ID        = '12'.freeze
-READY_FOR_CR_ID         = '121'.freeze
-READY_FOR_QA_ID         = '31'.freeze
+GIT_HUB_TOKEN      = ENV['GITHUB_TOKEN']
+JIRA_PASSWORD      = ENV['JIRA_PASSWORD']
+JIRA_USER_NAME     = 'pleskac@gmail.com'.freeze
+JIRA_TOKEN         = Base64.encode64("#{JIRA_USER_NAME}:#{JIRA_PASSWORD}").freeze
 
-JIRA_QA_IMAGE           = 'http://cliparts.co/cliparts/6cp/6Ma/6cp6MaK9i.png'.freeze
-JIRA_REVIEW_IMAGE       = 'http://cliparts.co/cliparts/6cp/6Ma/6cp6MaK9i.png'.freeze
+JIRA_QA_IMAGE      = 'http://cliparts.co/cliparts/6cp/6Ma/6cp6MaK9i.png'.freeze
+JIRA_REVIEW_IMAGE  = 'http://cliparts.co/cliparts/6cp/6Ma/6cp6MaK9i.png'.freeze

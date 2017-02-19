@@ -8,10 +8,24 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+!.keep
+*.DS_Store
+*.swo
+*.swp
+.bundle
+.env
+.pry_history
+.sass-cache/
+coverage/*
+config/database.yml
+db/*.sqlite3
+log/*.log
+public/system
+public/uploads
+rerun.txt
+tags
+tmp/*
+tmp/**/*
 
 .DS_Store
 
