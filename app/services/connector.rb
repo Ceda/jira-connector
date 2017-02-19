@@ -6,17 +6,17 @@ class Connector
     'Ready for Code Review' => 'Code Review',
     'Ready for QA'          => 'Quality Assurance',
     'Review Done'           => 'Acceptance Testing',
-    # 'WIP'                   => ''
-    # 'Blocked'               => '',
-    # 'Bug'                   => '',
-    # 'Need FIX'              => '',
-    # 'No QA'                 => '',
-    # 'On Production'         => '',
+    # 'WIP'                   => '???'
+    # 'Blocked'               => '???',
+    # 'Bug'                   => '???',
+    # 'Need FIX'              => '???',
+    # 'No QA'                 => '???',
+    # 'On Production'         => '???',
   }
 
   USERS = {
     'magnusekm@gmail.com' => 'magnusekm',
-    'pleskac@gmail.com'   => 'admin',
+    'pleskac@gmail.com'   => 'admin'
   }
 
   HEADERS = {
@@ -24,7 +24,7 @@ class Connector
     'Content-Type'  => 'application/json'
   }
 
-  def get_issue(code, type = nil)
+  def get_issue_code(code, type = nil)
     match = case type
             when 'pull_request' then code['head']['ref'].match(ISSUE_REGEX)
             else

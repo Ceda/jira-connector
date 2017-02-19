@@ -1,11 +1,7 @@
 class GithubConnector < Connector
-  def handle_request(push, event)
-    # request_headers
-    #  # create_branch    "HTTP_X_GITHUB_EVENT"=>"create",
-    #  # create_pr        "HTTP_X_GITHUB_EVENT"=>"pull_request",
-    #  # delete_branch    "HTTP_X_GITHUB_EVENT"=>"delete",
-    #  # review_requested "HTTP_X_GITHUB_EVENT"=>"pull_request",
+  include GithubApiCalls
 
+  def handle_request(push, event)
     case event
     when 'create'
       handle_branch_create(push)
@@ -18,35 +14,50 @@ class GithubConnector < Connector
     fetch_url = BB_JIRA_API_V1_URL + "detail?issueId=#{issue['id']}" + '&applicationType=github&dataType=pullrequest'
     response  = JSON.parse(RestClient.get(fetch_url, HEADERS))
 
-    url = response['detail'].first['pullRequests'].select { |pr| pr['status'] == 'OPEN' }.first['url']
+    pull_request = response['detail'].first['pullRequests'].select { |pr| pr['status'] == 'OPEN' }
 
-    'https://api.github.com/repos/' + url.match(/(?:.com\/)(.+)/)[1].gsub!('pull', 'issues')
+    return false unless pull_request.any?
+
+    'https://api.github.com/repos/' + pull_request.first['url'].match(/(?:.com\/)(.+)/)[1].gsub!('pull', 'issues')
+  end
+
+  def assign_to_user(issue, change)
+    url = get_issue_url issue
+    return false unless url
+
+    user = get_user_by_email(find_user(change))
+
+    assign_user_to_issue(user, url)
   end
 
   def change_labels(issue, change)
-    url   = get_issue_url issue
+    url = get_issue_url issue
+    return false unless url
+
     label = find_label(change)
 
-    RestClient.put "#{url}/labels", [label].to_json,
-                  params: { access_token: GIT_HUB_TOKEN },
-                  accept: :json
+    assign_label_to_issue(label, url)
+  end
+
+  private
+
+  def find_user(change)
+    USERS.key change['to'] || change['toString']
   end
 
   def find_label(change)
     LABELS.key change['toString'] || change['toString']
   end
 
-  private
-
   def handle_branch_create(push)
-    issue = get_issue push['ref']
+    issue = get_issue_code push['ref']
     jira_connector.change_state issue, 'In Progress'
   end
 
   def handle_pull_request(push)
     action       = push['action']
     pull_request = push['pull_request']
-    issue        = get_issue pull_request, 'pull_request'
+    issue        = get_issue_code pull_request, 'pull_request'
     user         = get_user_email pull_request['assignee']
 
     case action
@@ -73,13 +84,5 @@ class GithubConnector < Connector
     when 'changes_requested'
       jira_connector.change_state issue, 'To Do'
     end
-  end
-
-  def get_user_email(user)
-    response = RestClient.get user['url'],
-                              params: { access_token: GIT_HUB_TOKEN },
-                              accept: :json
-
-    JSON.parse(response)['email']
   end
 end

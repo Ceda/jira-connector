@@ -1,8 +1,13 @@
 class JiraConnector < Connector
   def handle_request(push)
-    change = push['changelog']['items'].find { |c| c['field'] == 'status' }
+    change = get_change(push)
 
-    github_connector.change_labels(push['issue'], change)
+    case change['field']
+    when 'status'
+      github_connector.change_labels(push['issue'], change)
+    when 'assignee'
+      github_connector.assign_to_user(push['issue'], change)
+    end
   end
 
   def assign_to_user(issue, user)
@@ -28,6 +33,10 @@ class JiraConnector < Connector
   end
 
   private
+
+  def get_change(push)
+    push['changelog']['items'].first
+  end
 
   def find_transition(label, available_transitions)
     state = LABELS[label] || label

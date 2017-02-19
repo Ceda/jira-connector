@@ -1,0 +1,199 @@
+{
+	"timestamp": 1487521510767,
+	"webhookEvent": "jira:issue_updated",
+	"issue_event_type_name": "issue_updated",
+	"user": {
+		"self": "https://cedatest.atlassian.net/rest/api/2/user?username=admin",
+		"name": "admin",
+		"key": "admin",
+		"emailAddress": "pleskac@gmail.com",
+		"avatarUrls": {
+			"48x48": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=48",
+			"24x24": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=24",
+			"16x16": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=16",
+			"32x32": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=32"
+		},
+		"displayName": "cedatest cedatest  [Administrator]",
+		"active": true,
+		"timeZone": "Europe/Berlin"
+	},
+	"issue": {
+		"id": "10000",
+		"self": "https://cedatest.atlassian.net/rest/api/2/issue/10000",
+		"key": "TEST-1",
+		"fields": {
+			"issuetype": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/issuetype/10100",
+				"id": "10100",
+				"description": "A user story. Created by JIRA Software - do not edit or delete.",
+				"iconUrl": "https://cedatest.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
+				"name": "Story",
+				"subtask": false,
+				"avatarId": 10315
+			},
+			"timespent": null,
+			"project": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/project/10000",
+				"id": "10000",
+				"key": "TEST",
+				"name": "test",
+				"avatarUrls": {
+					"48x48": "https://cedatest.atlassian.net/secure/projectavatar?avatarId=10324",
+					"24x24": "https://cedatest.atlassian.net/secure/projectavatar?size=small&avatarId=10324",
+					"16x16": "https://cedatest.atlassian.net/secure/projectavatar?size=xsmall&avatarId=10324",
+					"32x32": "https://cedatest.atlassian.net/secure/projectavatar?size=medium&avatarId=10324"
+				}
+			},
+			"fixVersions": [],
+			"customfield_10110": null,
+			"customfield_10111": null,
+			"aggregatetimespent": null,
+			"resolution": null,
+			"customfield_10112": null,
+			"customfield_10113": null,
+			"customfield_10114": "Not started",
+			"customfield_10104": null,
+			"customfield_10105": null,
+			"customfield_10106": null,
+			"customfield_10107": null,
+			"customfield_10108": null,
+			"customfield_10109": null,
+			"resolutiondate": null,
+			"workratio": -1,
+			"lastViewed": "2017-02-19T17:24:57.445+0100",
+			"watches": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/issue/TEST-1/watchers",
+				"watchCount": 1,
+				"isWatching": true
+			},
+			"created": "2017-02-18T20:54:44.822+0100",
+			"priority": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/priority/3",
+				"iconUrl": "https://cedatest.atlassian.net/images/icons/priorities/medium.svg",
+				"name": "Medium",
+				"id": "3"
+			},
+			"customfield_10100": null,
+			"customfield_10101": null,
+			"customfield_10102": null,
+			"labels": ["sdfgsdf"],
+			"customfield_10103": null,
+			"timeestimate": null,
+			"aggregatetimeoriginalestimate": null,
+			"versions": [],
+			"issuelinks": [],
+			"assignee": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/user?username=magnusekm",
+				"name": "magnusekm",
+				"key": "magnusekm",
+				"emailAddress": "magnusekm@gmail.com",
+				"avatarUrls": {
+					"48x48": "https://secure.gravatar.com/avatar/bc97a11bae792e3c79a908b672568cd6?d=mm&s=48",
+					"24x24": "https://secure.gravatar.com/avatar/bc97a11bae792e3c79a908b672568cd6?d=mm&s=24",
+					"16x16": "https://secure.gravatar.com/avatar/bc97a11bae792e3c79a908b672568cd6?d=mm&s=16",
+					"32x32": "https://secure.gravatar.com/avatar/bc97a11bae792e3c79a908b672568cd6?d=mm&s=32"
+				},
+				"displayName": "Martin Magnusek",
+				"active": true,
+				"timeZone": "Europe/Berlin"
+			},
+			"updated": "2017-02-19T17:25:10.761+0100",
+			"status": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/status/10000",
+				"description": "",
+				"iconUrl": "https://cedatest.atlassian.net/",
+				"name": "Backlog",
+				"id": "10000",
+				"statusCategory": {
+					"self": "https://cedatest.atlassian.net/rest/api/2/statuscategory/2",
+					"id": 2,
+					"key": "new",
+					"colorName": "blue-gray",
+					"name": "To Do"
+				}
+			},
+			"components": [],
+			"timeoriginalestimate": null,
+			"description": null,
+			"timetracking": {},
+			"customfield_10005": null,
+			"attachment": [],
+			"aggregatetimeestimate": null,
+			"summary": "test",
+			"creator": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/user?username=admin",
+				"name": "admin",
+				"key": "admin",
+				"emailAddress": "pleskac@gmail.com",
+				"avatarUrls": {
+					"48x48": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=48",
+					"24x24": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=24",
+					"16x16": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=16",
+					"32x32": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=32"
+				},
+				"displayName": "cedatest cedatest  [Administrator]",
+				"active": true,
+				"timeZone": "Europe/Berlin"
+			},
+			"subtasks": [],
+			"reporter": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/user?username=admin",
+				"name": "admin",
+				"key": "admin",
+				"emailAddress": "pleskac@gmail.com",
+				"avatarUrls": {
+					"48x48": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=48",
+					"24x24": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=24",
+					"16x16": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=16",
+					"32x32": "https://secure.gravatar.com/avatar/6755d32c8043c785041fb36459525a00?d=mm&s=32"
+				},
+				"displayName": "cedatest cedatest  [Administrator]",
+				"active": true,
+				"timeZone": "Europe/Berlin"
+			},
+			"customfield_10000": "{pullrequest={dataType=pullrequest, state=OPEN, stateCount=1}, json={\"cachedValue\":{\"errors\":[],\"summary\":{\"pullrequest\":{\"overall\":{\"count\":1,\"lastUpdated\":\"2017-02-19T17:07:24.000+0100\",\"stateCount\":1,\"state\":\"OPEN\",\"open\":true},\"byInstanceType\":{\"github\":{\"count\":1,\"name\":\"GitHub\"}}}}},\"isStale\":false}}",
+			"aggregateprogress": {
+				"progress": 0,
+				"total": 0
+			},
+			"customfield_10001": null,
+			"customfield_10115": null,
+			"customfield_10116": "0|hzzzzz:",
+			"environment": null,
+			"customfield_10119": null,
+			"duedate": null,
+			"progress": {
+				"progress": 0,
+				"total": 0
+			},
+			"comment": {
+				"comments": [],
+				"maxResults": 0,
+				"total": 0,
+				"startAt": 0
+			},
+			"votes": {
+				"self": "https://cedatest.atlassian.net/rest/api/2/issue/TEST-1/votes",
+				"votes": 0,
+				"hasVoted": false
+			},
+			"worklog": {
+				"startAt": 0,
+				"maxResults": 20,
+				"total": 0,
+				"worklogs": []
+			}
+		}
+	},
+	"changelog": {
+		"id": "10100",
+		"items": [{
+			"field": "assignee",
+			"fieldtype": "jira",
+			"from": null,
+			"fromString": null,
+			"to": "magnusekm",
+			"toString": "Martin Magnusek"
+		}]
+	}
+}
