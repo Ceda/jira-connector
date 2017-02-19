@@ -1,24 +1,19 @@
 class JiraConnector < Connector
   def handle_request(push)
-    issue  = push['issue']['key']
     change = push['changelog']['items'].find { |c| c['field'] == 'status' }
 
-    url = github_connector.get_issue_url push['issue']
-    label = github_connector.find_label(change)
-
-    github_connector.change_labels(url, label)
+    github_connector.change_labels(push['issue'], change)
   end
 
-  def get_issue(code, type)
-    match = case type
-            when 'branch'       then code.match(ISSUE_REGEX)
-            when 'pull_request' then code['head']['ref'].match(ISSUE_REGEX)
-            end
+  def assign_to_user(issue, user)
+    return false unless issue && user
 
-    match && match[0]
+    url = BB_JIRA_API_V2_URL + issue
+
+    RestClient.put(url, { fields: { assignee: { name: USERS[user] } } }.to_json, HEADERS)
   end
 
-  def change_state(issue, label, _user)
+  def change_state(issue, label)
     return false unless issue
 
     url = BB_JIRA_API_V2_URL + issue + '/transitions'

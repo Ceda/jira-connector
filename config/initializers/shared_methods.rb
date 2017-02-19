@@ -1,7 +1,7 @@
 def jira_connector
-  JiraConnector.new
+  @jira_connector ||= JiraConnector.new
 end
 
 def github_connector
-  GithubConnector.new
+  @github_connector ||= GithubConnector.new
 end
