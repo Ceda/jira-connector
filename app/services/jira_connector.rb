@@ -1,4 +1,6 @@
-class JiraConnector < Connector
+class JiraConnector
+  include Variables
+
   def handle_request(push)
     change = get_change(push)
 

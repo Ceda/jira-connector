@@ -1,4 +1,4 @@
-class Connector
+module Variables
   ISSUE_REGEX = /[A-Za-z]+-[0-9]+/
 
   LABELS = {
@@ -6,12 +6,12 @@ class Connector
     'Ready for Code Review' => 'Code Review',
     'Ready for QA'          => 'Quality Assurance',
     'Review Done'           => 'Acceptance Testing',
-    # 'WIP'                   => '???'
+    'WIP'                   => 'In Progress',
+    'On Production'         => 'Done',
     # 'Blocked'               => '???',
     # 'Bug'                   => '???',
     # 'Need FIX'              => '???',
     # 'No QA'                 => '???',
-    # 'On Production'         => '???',
   }
 
   USERS = {
@@ -23,14 +23,4 @@ class Connector
     'Authorization' => "Basic #{JIRA_TOKEN}",
     'Content-Type'  => 'application/json'
   }
-
-  def get_issue_code(code, type = nil)
-    match = case type
-            when 'pull_request' then code['head']['ref'].match(ISSUE_REGEX)
-            else
-              code.match(ISSUE_REGEX)
-            end
-
-    match && match[0]
-  end
 end

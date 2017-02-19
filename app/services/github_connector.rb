@@ -1,4 +1,5 @@
-class GithubConnector < Connector
+class GithubConnector
+  include Variables
   include GithubApiCalls
 
   def handle_request(push, event)
@@ -8,17 +9,6 @@ class GithubConnector < Connector
     when 'pull_request'
       handle_pull_request(push)
     end
-  end
-
-  def get_issue_url(issue)
-    fetch_url = BB_JIRA_API_V1_URL + "detail?issueId=#{issue['id']}" + '&applicationType=github&dataType=pullrequest'
-    response  = JSON.parse(RestClient.get(fetch_url, HEADERS))
-
-    pull_request = response['detail'].first['pullRequests'].select { |pr| pr['status'] == 'OPEN' }
-
-    return false unless pull_request.any?
-
-    'https://api.github.com/repos/' + pull_request.first['url'].match(/(?:.com\/)(.+)/)[1].gsub!('pull', 'issues')
   end
 
   def assign_to_user(issue, change)
@@ -47,6 +37,16 @@ class GithubConnector < Connector
 
   def find_label(change)
     LABELS.key change['toString'] || change['toString']
+  end
+
+  def get_issue_code(code, type = nil)
+    match = case type
+            when 'pull_request' then code['head']['ref'].match(ISSUE_REGEX)
+            else
+              code.match(ISSUE_REGEX)
+            end
+
+    match && match[0]
   end
 
   def handle_branch_create(push)
