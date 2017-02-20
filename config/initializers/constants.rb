@@ -2,10 +2,10 @@ require 'base64'
 
 # Credentials
 BB_JIRA_URL    = 'https://cedatest.atlassian.net/rest/api/2/issue/'.freeze
-GIT_HUB_TOKEN  = 'fcaca0c16d8af65a512e49c00f246c6fc48d0cff'.freeze
+GIT_HUB_TOKEN  = '7c96a002decb0712a1bff50bf0a2545f2241db72'.freeze
 JIRA_PASSWORD  = 'cedaceda'.freeze
 JIRA_USER_NAME = 'pleskac@gmail.com'.freeze
-JIRA_TOKEN     = Base64.encode64('#{JIRA_USER_NAME}:#{JIRA_PASSWORD}').freeze
+JIRA_TOKEN     = Base64.encode64("#{JIRA_USER_NAME}:#{JIRA_PASSWORD}").freeze
 
 # Jira Transition IDs
 QA_PASSED_ID            = '91'.freeze
