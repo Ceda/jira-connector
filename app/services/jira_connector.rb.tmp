@@ -1,12 +1,23 @@
 class JiraConnector
   include Variables
 
+  def handle_request(push)
+    change = get_change(push)
+
+    case change['field']
+    when 'status'
+      Connector.github.change_labels(push['issue'], change)
+    when 'assignee'
+      Connector.github.assign_to_user(push['issue'], change)
+    end
+  end
+
   def assign_to_user(issue, user)
     return false unless issue && user
 
     url = BB_JIRA_API_V2_URL + issue
 
-    JiraClient.put(url, { fields: { assignee: { name: USERS[user] } } })
+    RestClient.put(url, { fields: { assignee: { name: USERS[user] } } }.to_json, HEADERS)
   end
 
   def change_state(issue, label)
@@ -16,24 +27,18 @@ class JiraConnector
 
     transition = find_transition label, JSON.parse(RestClient.get(url, HEADERS))
     if transition
-      JiraClient.post(url, { transition: { id: transition['id'] } })
+      RestClient.post(url, { transition: { id: transition['id'] } }.to_json, HEADERS)
     else
       Rails.logger.error 'Cannot transition this ticket'
       false
     end
   end
 
-  def get_issue_url(issue)
-    fetch_url    = BB_JIRA_API_V1_URL + "detail?issueId=#{issue['id']}" + '&applicationType=github&dataType=pullrequest'
-    response     = JSON.parse(JiraClient.get(fetch_url))
-    pull_request = response['detail'].first['pullRequests'].select { |pr| pr['status'] == 'OPEN' }
-
-    return false unless pull_request.any?
-
-    'https://api.github.com/repos/' + pull_request.first['url'].match(/(?:.com\/)(.+)/)[1].gsub!('pull', 'issues')
-  end
-
   private
+
+  def get_change(push)
+    push['changelog']['items'].first
+  end
 
   def find_transition(label, available_transitions)
     state = LABELS[label] || label
